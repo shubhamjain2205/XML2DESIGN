@@ -12,7 +12,9 @@ const app = express();
 
 mongoose.connect("mongodb://localhost/27017");
 
-app.set("view engine", "ejs");
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require("express-session")({
 	secret: "Rusty is a dog",
@@ -30,18 +32,26 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Handling user login
+// app.post("/login", passport.authenticate("local", {
+// 	successRedirect: "/secret", // Redirect to the secret page on successful login
+// 	failureRedirect: "/login", // Redirect back to the login page if login fails
+// 	failureFlash: true // Enable flash messages for login failure
+//   }));
+  
+
 //=====================
 // ROUTES
 //=====================
 
 // Showing home page
 app.get("/", function (req, res) {
-	res.render("home");
+	res.sendFile(__dirname + "/views/home.html");
 });
 
 // Showing secret page
 app.get("/secret", isLoggedIn, function (req, res) {
-	res.render("secret");
+	res.sendFile(__dirname + "/views/secret.html");
 });
 
 // Showing register form
@@ -84,7 +94,7 @@ app.post("/register", async (req, res) => {
 
 //Showing login form
 app.get("/login", function (req, res) {
-	res.render("login");
+	res.sendFile(__dirname + "/views/login.html");
 });
 
 //Handling user login

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X2D | Home</title>
+  <link rel="icon" type="image/x-icon" href="image/fevicon.ico">
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom CSS for fixing the position of the aside while scrolling */
+    .sticky-aside {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 4rem; /* Adjust this value as needed */
+      height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+      overflow-y: auto;
+    }
+
+    /* Custom CSS to add padding for the fixed navbar */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .main-content {
+      padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+    }
+
+    /* Custom CSS to offset the fixed navbar's height when using anchor links */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .offset-anchor {
+      padding-top: 6rem; /* Should match the height of your fixed navbar */
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-blue-500 py-4 px-8 flex items-center justify-between fixed-top w-full">
+    <div class="flex items-center">
+      <!-- Company Logo (Replace src attribute with your logo image URL) -->
+      <a href="home.html"><img src="image/logo.png" alt="Company Logo" class="h-8 w-8 mr-2"></a>
+      <!-- Company Name (Replace with your company name) -->
+      <a href="home.html"> <span class="text-white font-bold text-lg">XML2Degine</span></a>
+      <!-- Search Bar -->
+      <input type="text" class="px-2 py-1 border rounded-md ml-4" placeholder="Search...">
+    </div>
+    <div class="flex items-center">
+      <!-- Navigation Links -->
+      <a href="#" class="text-white mr-4">About</a>
+      <a href="#" class="text-white mr-4">Home</a>
+      <a href="#" class="text-white mr-4">Contact</a>
+      <!-- Login Button with Hover State -->
+      <a href="login"><button class="text-white bg-transparent border border-white rounded px-4 py-2 mr-2 hover:bg-white hover:text-blue-700 transition">Login</button></a>
+      <!-- Registration Button with Hover State -->
+      <button class="text-white bg-blue-700 rounded px-4 py-2 hover:bg-blue-800 transition">Register</button>
+    </div>
+  </nav>
+
+  <div class="container mx-auto mt-20"> <!-- Add mt-20 to create space for the fixed navbar -->
+    <div class="row">
+      <!-- Aside Content (1 column wide) -->
+      <aside class="bg-gray-300 py-8 px-4 col-md-2 sticky-aside">
+        <!-- Tree-like Content Highlight (Replace with your content) -->
+        <ul class="list-none">
+          <!-- Link to "Simplify XML with Design Views" -->
+          <li class="mb-2"><a href="#simplify-xml">Simplify XML with Design Views</a></li>
+          <hr>
+          <!-- Link to "Unleash the Power of Visual Representation" -->
+          <li class="mb-2"><a href="#power-of-visual">Unleash the Power of Visual Representation</a></li>
+          <hr>
+          <!-- Link to "Key Features at Your Fingertips" -->
+          <li class="mb-2"><a href="#key-features">Key Features at Your Fingertips</a></li>
+          <hr>
+          <!-- Link to "Empowering Users of All Backgrounds" -->
+          <li class="mb-2"><a href="#empowering-users">Empowering Users of All Backgrounds</a></li>
+          <hr>
+          <!-- Link to "Embrace a New Era of XML Data Manipulation" -->
+          <li class="mb-2"><a href="#new-era-xml">Embrace a New Era of XML Data Manipulation</a></li>
+        </ul>
+      </aside>
+
+
+      <!-- Home Page Content (5 columns wide on medium and larger screens) -->
+      <main class="flex-1 p-8 col-md-5 main-content">
+        <!-- About Company Section -->
+        <section class="mb-8">
+          <p>Welcome to the revolutionary world of XML to Design View and XML to QoS Design View! Discover a new and effortless way to transform complex XML files into visually stunning design views, making data analysis and manipulation a breeze.</p>
+          <h1 id="simplify-xml" class="text-3xl offset-anchor font-bold mb-4">Simplify XML with Design Views</h1>
+          <p>Are you tired of wrestling with XML files, trying to make sense of their intricate structure and syntax? Say goodbye to the days of struggling to comprehend XML data, and say hello to our innovative XML to Design View system! Our purpose is simple: to provide you with a seamless and user-friendly way to view and manage XML data like never before.</p>
+          <h1 id="power-of-visual" class="text-3xl offset-anchor font-bold mb-4">Unleash the Power of Visual Representation</h1>
+          <p>We understand that working with raw XML files can be intimidating, especially if you're not an XML expert. That's why we've created a cutting-edge system that converts XML data into visually appealing design views. With just a few clicks, you'll be able to see your XML data presented in a structured and intuitive graphical format, making it easier than ever to understand the underlying relationships.</p>
+          <h1 id="key-features" class="text-3xl offset-anchor font-bold mb-4">Key Features at Your Fingertips</h1>
+          <p>Our XML to Design View system is packed with powerful features to enhance your XML data experience:</p>
+          <h1 class="text-2xl offset-anchor font-bold mb-4">1. XML to Topic Design View</h1>
+          <p>Take control of your XML data with our XML to Topic Design View function. Watch as your XML files are transformed into beautifully organized design views, allowing you to navigate, analyze, and interact with your data effortlessly.</p>
+          <h1 class="text-2xl offset-anchor font-bold mb-4">2. XML to QoS Design View</h1>
+          <p>Quality of Service (QoS) is critical in many applications, and managing it effectively is essential. With our XML to QoS Design View feature, you can easily convert XML files related to QoS parameters into specialized design views. Gain valuable insights and modify QoS aspects with ease.</p>
+          <h1 class="text-2xl offset-anchor font-bold mb-4">3. Edit, Save, and Delete with Confidence</h1>
+          <p>We believe in giving you complete control over your XML data. That's why our system allows you to edit the converted design views, make changes, add new elements, and save the modifications securely. If you no longer need certain data, our delete option lets you remove it effortlessly.</p>
+          <h1 class="text-2xl offset-anchor font-bold mb-4">4. Seamless Storage with MongoDB</h1>
+          <p>Your modified XML data deserves a safe home. Our system utilizes the robust MongoDB database to store your design views and any edits you make. Rest easy knowing that your data is securely stored and ready for quick retrieval whenever you need it.</p>
+          <h1 id="empowering-users" class="text-3xl offset-anchor font-bold mb-4">Empowering Users of All Backgrounds</h1>
+          <p>Our XML to Design View system is designed with you in mind. We cater to users with varying levels of XML expertise and technical backgrounds:</p>
+          <h1 class="text-2xl offset-anchor font-bold mb-4">1. Domain Experts and Professionals</h1>
+          <p>For domain experts and professionals working with XML data, our visual representation will be a game-changer. Gain a comprehensive overview of your data at a glance, speeding up decision-making processes and optimizing your workflow.</p>
+          <h1 class="text-2xl offset-anchor font-bold mb-4">2. Business Analysts and Stakeholders</h1>
+          <p>Business analysts and stakeholders no longer need to rely on complex XML editors or programming tools. With our user-friendly system, you can dive into XML data with confidence, making informed decisions effortlessly.</p>
+          <h1 class="text-2xl offset-anchor font-bold mb-4">3. XML-Interacting Individuals</h1>
+          <p>Even if you're not an XML expert, our system empowers you to interact with XML-based systems or applications seamlessly. Whether you need to troubleshoot, update, or maintain XML files, our intuitive interface has you covered.</p>
+          <h1 id="new-era-xml" class="text-3xl offset-anchor font-bold mb-4">Embrace a New Era of XML Data Manipulation</h1>
+          <p>As we embark on this journey to simplify XML data manipulation, we invite you to join us and experience the power of our XML to Design View system. With its ease of use, versatility, and visually captivating design views, you'll wonder how you ever managed XML data without it.</p><br>
+          <p>Embrace the future of XML data manipulation. Let's revolutionize the way you work with XML files together. Welcome to the XML to Design View and XML to QoS Design View system - where complexity meets simplicity, and data takes on a whole new dimension.</p>
+          
+
+        </section>
+
+        <!-- Add more content as needed -->
+      </main>
+    </div>
+  </div>
+</body>
+</html>
