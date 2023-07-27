@@ -12,6 +12,9 @@ const app = express();
 
 mongoose.connect("mongodb://localhost/27017");
 
+// Set EJS as the template engine
+// app.set("view engine", "ejs");
+
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
@@ -56,39 +59,65 @@ app.get("/secret", isLoggedIn, function (req, res) {
 
 // Showing register form
 app.get("/register", function (req, res) {
-	res.render("register");
+	res.sendFile(__dirname + "/views/register.html");
 });
 
 // Handling user signup
 app.post("/register", async (req, res) => {
     try {
-      const existingUser = await User.findOne({ username: req.body.username });
+      const { fullname, username, email, password, confirmPassword } = req.body;
+      
       // Check if the username already exists in the database
+      const existingUser = await User.findOne({ username });
       if (existingUser) {
         // If the username already exists, redirect back to the registration page with an error message
-        req.flash("error", "Username already exists. Please choose a different username.");
-        return res.redirect("/register");
+
+    //     req.flash("error", "Username already exists. Please choose a different username.");
+    //     return res.redirect("/register");
+	const errorMessage = "Username already exists. Please choose a different username.";
+      return res.send(`<script>alert("${errorMessage}"); window.location.href = "/register";</script>`);
+    }
+
+      // Check if the passwords match
+      if (password !== confirmPassword) {
+        // req.flash("error", "Passwords do not match. Please re-enter the passwords.");
+        // return res.redirect("/register");
+		const errorMessage = "Passwords do not match. Please re-enter the passwords.";
+      return res.send(`<script>alert("${errorMessage}"); window.location.href = "/register";</script>`);
+
       }
   
-      // If the username does not exist, create a new user
+      // If the username does not exist and passwords match, create a new user
       const user = await User.create({
-        username: req.body.username,
-        password: req.body.password
+        fullname,
+        username,
+        email,
+        password
       });
   
       // Set a success flash message for successful registration
-      req.flash("success", "Registration successful! You can now log in.");
+    //   req.flash("success", "Registration successful! You can now log in.");
+	  const successMessage = "Registration successful! You can now log in.";
+
   
       // Redirect the user to the home page ("/") after successful registration
-      return res.redirect("/");
+    //   return res.redirect("/");
+	return res.send(`<script>alert("${successMessage}"); window.location.href = "/";</script>`);
+
     } catch (error) {
       // Handle any errors that occurred during user creation
       console.error("Error while creating user:", error);
-      req.flash("error", "An error occurred during registration. Please try again.");
-      // Redirect back to the registration page with an error message
-      return res.redirect("/register");
-    }
-  });
+
+    //   req.flash("error", "An error occurred during registration. Please try again.");
+    //   // Redirect back to the registration page with an error message
+    //   return res.redirect("/register");
+    // }
+	const errorMessage = "An error occurred during registration. Please try again.";
+
+    // Display an alert with the error message and redirect back to the registration page
+    return res.send(`<script>alert("${errorMessage}"); window.location.href = "/register";</script>`);
+  }
+});
   
   
 
