@@ -1,0 +1,305 @@
+/* About CSS */
+
+
+
+    /* Custom CSS for fixing the position of the aside while scrolling */
+    .sticky-aside {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 4rem; /* Adjust this value as needed */
+        height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+        overflow-y: auto;
+      }
+  
+      /* Custom CSS to add padding for the fixed navbar */
+      /* Adjust the top padding value based on your fixed navbar's height */
+      .main-content {
+        padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+      }
+  
+      /* Custom CSS to offset the fixed navbar's height when using anchor links */
+      /* Adjust the top padding value based on your fixed navbar's height */
+      .offset-anchor {
+        padding-top: 6rem; /* Should match the height of your fixed navbar */
+      }
+  
+      /* CSS to resize the images */
+      .developer-image {
+        width: 150px; /* Adjust the width as needed */
+        height: 150px; /* Adjust the height as needed */
+      }
+  
+      .card {
+        padding: 1.5rem; /* Adjust the padding as needed */
+        margin-bottom: 1rem; /* Adjust the margin as needed */
+      }
+   /* About CSS */
+  
+  
+  
+  
+   /* Home CSS */
+  
+  
+  
+  
+  
+      /* Custom CSS for fixing the position of the aside while scrolling */
+      .sticky-aside {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 4rem; /* Adjust this value as needed */
+        height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+        overflow-y: auto;
+      }
+  
+      /* Custom CSS to add padding for the fixed navbar */
+      /* Adjust the top padding value based on your fixed navbar's height */
+      .main-content {
+        padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+      }
+  
+      /* Custom CSS to offset the fixed navbar's height when using anchor links */
+      /* Adjust the top padding value based on your fixed navbar's height */
+      .offset-anchor {
+        padding-top: 6rem; /* Should match the height of your fixed navbar */
+      }
+    /* Home Css */
+  
+  
+  
+  
+  
+    /* Login CSS */
+  
+  
+  
+    
+    /* Custom CSS for fixing the position of the aside while scrolling */
+    .sticky-aside {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 4rem; /* Adjust this value as needed */
+      height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+      overflow-y: auto;
+    }
+  
+    /* Custom CSS to add padding for the fixed navbar */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .main-content {
+      padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+    }
+  
+    /* Custom CSS to offset the fixed navbar's height when using anchor links */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .offset-anchor {
+      padding-top: 6rem; /* Should match the height of your fixed navbar */
+    }
+  
+    .sticky-login {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 7rem; /* Adjust this value as needed */
+    }
+  
+    /* contact css */
+     /* Custom CSS for fixing the position of the aside while scrolling */
+     .sticky-aside {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 4rem; /* Adjust this value as needed */
+      height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+      overflow-y: auto;
+    }
+  
+    /* Custom CSS to add padding for the fixed navbar */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .main-content {
+      padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+    }
+  
+    /* Custom CSS to offset the fixed navbar's height when using anchor links */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .offset-anchor {
+      padding-top: 6rem; /* Should match the height of your fixed navbar */
+    }
+  
+    .sticky-login {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 7rem; /* Adjust this value as needed */
+    }
+  
+    /* forgetpassword css */
+      /* Custom CSS for fixing the position of the aside while scrolling */
+      .sticky-aside {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 4rem; /* Adjust this value as needed */
+        height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+        overflow-y: auto;
+      }
+  
+      /* Custom CSS to add padding for the fixed navbar */
+      /* Adjust the top padding value based on your fixed navbar's height */
+      .main-content {
+        padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+      }
+  
+      /* Custom CSS to offset the fixed navbar's height when using anchor links */
+      /* Adjust the top padding value based on your fixed navbar's height */
+      .offset-anchor {
+        padding-top: 6rem; /* Should match the height of your fixed navbar */
+      }
+  
+      .sticky-login {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 7rem; /* Adjust this value as needed */
+      }
+  
+       /* Custom CSS to fix the position of the Forget Password div */
+       .sticky-forget-password {
+        position: sticky;
+        top: 8rem; /* Adjust this value as needed */
+       }
+  
+  /* Container for main content and Forget Password div */
+  .main-content-and-forget-password {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-areas: "content"
+                         "forgetpassword"; /* Define the grid areas for content and Forget Password div */
+  }
+  
+  /* Wrapper for Forget Password div */
+  .forget-password-wrapper {
+    grid-area: forgetpassword; /* Place the Forget Password div in its defined grid area */
+  }
+  
+  /* Styling for the Forget Password div */
+  .sticky-forget-password {
+    position: sticky;
+    top: 8rem; /* Adjust this value based on the height of your header/navbar */
+    width: 100%;
+    z-index: 1; /* Ensure the Forget Password div appears above the main content */
+  }
+  /* 
+  register css */
+  /* Custom CSS for sticky registration */
+  .sticky-registration {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  /* Custom CSS for fixed registration after scrolling to a certain point */
+  .fixed-registration {
+    position: fixed;
+    top: 2rem; /* Adjust this value as needed */
+    width: calc(33.333% - 2rem); /* Adjust this value as needed */
+  }
+  
+  /* Custom CSS for fixing the position of the aside while scrolling */
+  .sticky-aside {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem; /* Adjust this value as needed */
+    height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+    overflow-y: auto;
+  }
+  
+  /* Custom CSS to add padding for the fixed navbar */
+  /* Adjust the top padding value based on your fixed navbar's height */
+  .main-content {
+    padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+  }
+  
+  /* Custom CSS to offset the fixed navbar's height when using anchor links */
+  /* Adjust the top padding value based on your fixed navbar's height */
+  .offset-anchor {
+    padding-top: 6rem; /* Should match the height of your fixed navbar */
+  }
+  
+  .sticky-login {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem; /* Adjust this value as needed */
+  }
+  /* Container for main content and Registration div */
+  /* Container for main content and Registration div */
+  .main-content-and-registration {
+      display: grid;
+      grid-template-columns: 2fr 1fr; /* Divide the container into two columns */
+      grid-gap: 2rem; /* Add some space between the columns */
+    }
+    
+    /* Styling for the Registration div */
+    .sticky-registration {
+      position: sticky;
+      top: 8rem; /* Adjust this value based on the height of your header/navbar */
+      z-index: 1; /* Ensure the Registration div appears above the main content */
+    }
+    
+    /* Add this new CSS for the "Registration" div to stop sticking after it reaches the end */
+    .fixed-registration {
+      position: relative;
+      top: auto;
+    }
+  
+    /* Forget pass */
+  
+    /* Custom CSS for fixing the position of the aside while scrolling */
+    .sticky-aside {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 4rem; /* Adjust this value as needed */
+      height: calc(100vh - 4rem); /* Adjust this value to match the available viewport height */
+      overflow-y: auto;
+    }
+  
+    /* Custom CSS to add padding for the fixed navbar */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .main-content {
+      padding-top: 2.5rem; /* Add some extra padding to create space between content and fixed navbar */
+    }
+  
+    /* Custom CSS to offset the fixed navbar's height when using anchor links */
+    /* Adjust the top padding value based on your fixed navbar's height */
+    .offset-anchor {
+      padding-top: 6rem; /* Should match the height of your fixed navbar */
+    }
+  
+    .sticky-login {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 7rem; /* Adjust this value as needed */
+    }
+  
+     /* Custom CSS to fix the position of the Forget Password div */
+     .sticky-forget-password {
+      position: sticky;
+      top: 8rem; /* Adjust this value as needed */
+     }
+  
+  /* Container for main content and Forget Password div */
+  .main-content-and-forget-password {
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-areas: "content"
+                       "forgetpassword"; /* Define the grid areas for content and Forget Password div */
+  }
+  
+  /* Wrapper for Forget Password div */
+  .forget-password-wrapper {
+  grid-area: forgetpassword; /* Place the Forget Password div in its defined grid area */
+  }
+  
+  /* Styling for the Forget Password div */
+  .sticky-forget-password {
+  position: sticky;
+  top: 8rem; /* Adjust this value based on the height of your header/navbar */
+  width: 100%;
+  z-index: 1; /* Ensure the Forget Password div appears above the main content */
+  }
+  

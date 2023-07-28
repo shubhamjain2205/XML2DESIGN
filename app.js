@@ -9,6 +9,14 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const flash = require("connect-flash"); // Add this line to require connect-flash
 const User = require("./model/User");
 const app = express();
+const crypto = require("crypto");
+//const sgMail = require('@sendgrid/mail'); // Add this line to require sendgrid
+const nodemailer = require("nodemailer");
+//const cryptoRandomString = require('crypto-random-string'); // Import the crypto-random-string library
+const generatePassword = require('generate-password');
+
+// Serve static files (CSS, images, etc.) from the "public" directory
+app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/27017");
 
@@ -35,13 +43,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Handling user login
-// app.post("/login", passport.authenticate("local", {
-// 	successRedirect: "/secret", // Redirect to the secret page on successful login
-// 	failureRedirect: "/login", // Redirect back to the login page if login fails
-// 	failureFlash: true // Enable flash messages for login failure
-//   }));
-  
+// Function to generate a random password reset token
+function generateRandomToken() {
+  return crypto.randomBytes(20).toString('hex');
+}
 
 //=====================
 // ROUTES
@@ -50,6 +55,16 @@ passport.deserializeUser(User.deserializeUser());
 // Showing home page
 app.get("/", function (req, res) {
 	res.sendFile(__dirname + "/views/home.html");
+});
+
+// Showing About page
+app.get("/about", function (req, res) {
+	res.sendFile(__dirname + "/views/about.html");
+});
+
+// Showing Contact page
+app.get("/contact", function (req, res) {
+	res.sendFile(__dirname + "/views/contact.html");
 });
 
 // Showing secret page
@@ -61,6 +76,90 @@ app.get("/secret", isLoggedIn, function (req, res) {
 app.get("/register", function (req, res) {
 	res.sendFile(__dirname + "/views/register.html");
 });
+
+// Add a new route for "Forgot Password" page
+app.get("/forgot", function (req, res) {
+  res.sendFile(__dirname + "/views/forgot.html");
+});
+
+
+// Add a new route to handle "Forgot Password" form submission
+app.post("/forgot", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Generate a random new password
+    const newPassword = generateRandomPassword();
+
+    // Update the user's password in the MongoDB database
+    const user = await User.findOne({ email });
+    if (!user) {
+      const errorMessage = "User with this email address does not exist.";
+      return res.send(`<script>alert("${errorMessage}"); window.location.href = "/login";</script>`);
+    }
+
+    // Update the user's password and save the changes
+    user.password = newPassword;
+    await user.save();
+
+    // Send the new password to the user via email
+    sendNewPasswordEmail(email, newPassword);
+
+    // Redirect the user to the login page with a success message
+    const successMessage = "A new password has been sent to your email. Please check your inbox.";
+    return res.send(`<script>alert("${successMessage}"); window.location.href = "/login";</script>`);
+  } catch (error) {
+    // Handle any errors that occurred during the password reset process
+    console.error("Error during password reset:", error);
+
+    const errorMessage = "An error occurred during the password reset process. Please try again.";
+    return res.send(`<script>alert("${errorMessage}"); window.location.href = "/forgotPassword";</script>`);
+  }
+});
+
+// Function to generate a random password
+function generateRandomPassword() {
+  // Generate a random password with options
+  const randomPassword = generatePassword.generate({
+    length: 10,
+    numbers: true,
+    symbols: false,
+    uppercase: true,
+    lowercase: true,
+    excludeSimilarCharacters: true,
+  });
+  return randomPassword;
+}
+
+// Function to send the new password to the user via email
+function sendNewPasswordEmail(email, newPassword) {
+  // Implement your logic to send the email here using nodemailer or SendGrid
+  // For example, if you're using nodemailer:
+  const transporter = nodemailer.createTransport({
+    service: "gmail", // e.g., "Gmail" or "SendGrid"
+    auth: {
+      user: "chiragmegha03@gmail.com",
+      pass: "ybonjsyaiwtkniqr",
+    },
+  });
+
+  const mailOptions = {
+    from: "chiragmegha03@gmail.com",
+    to: email,
+    subject: "Password Reset",
+    text: `Your new password is: ${newPassword}`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.error("Error sending email:", error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+}
+
+
 
 // Handling user signup
 app.post("/register", async (req, res) => {
@@ -119,7 +218,7 @@ app.post("/register", async (req, res) => {
   }
 });
   
-  
+
 
 //Showing login form
 app.get("/login", function (req, res) {
@@ -154,7 +253,6 @@ app.get("/logout", function (req, res) {
 		res.redirect('/');
 	});
 });
-
 
 
 function isLoggedIn(req, res, next) {

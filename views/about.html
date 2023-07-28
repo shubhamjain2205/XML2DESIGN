@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X2D | About</title>
+  <link rel="icon" type="image/x-icon" href="image/fevicon.ico">
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-blue-500 py-4 px-8 flex items-center justify-between fixed-top w-full">
+    <div class="flex items-center">
+      <!-- Company Logo (Replace src attribute with your logo image URL) -->
+      <a href="/"><img src="image/logo-light.png" alt="Company Logo" class="h-8 w-8 mr-2"></a>
+      <!-- Company Name (Replace with your company name) -->
+      <a href="/"> <span class="text-white font-bold text-lg">XML2Degine</span></a>
+    </div>
+    <div class="flex items-center">
+      <!-- Navigation Links -->
+      <a href="about" class="text-white mr-4">About</a>
+      <a href="/" class="text-white mr-4">Home</a>
+      <a href="contact" class="text-white mr-4">Contact</a>
+      <!-- Login Button with Hover State -->
+      <a href="login"><button class="text-white bg-transparent border border-white rounded px-4 py-2 mr-2 hover:bg-white hover:text-blue-700 transition">Login</button></a>
+      <!-- Registration Button with Hover State -->
+      <a href="register"><button class="text-white bg-blue-700 rounded px-4 py-2 hover:bg-blue-800 transition">Register</button></a>
+    </div>
+  </nav>
+
+  <div class="container mx-auto mt-20 main-content"> <!-- Add mt-20 to create space for the fixed navbar -->
+
+    <!-- Rectangular Card -->
+    <div class="flex-1 col-md-10 mx-auto mb-4">
+        <div class="bg-white rounded-lg shadow p-4">
+          <div class="row">
+            <!-- Image Column -->
+            <div class="col-md-4">
+              <img src="/image/logo-dark.png" alt="Project-Logo" class="w-full rounded-lg">
+            </div>
+            <!-- Paragraph Column -->
+            <div class="col-md-8">
+                <br><br>
+              <p class="text-gray-800">Introducing our revolutionary software solution, the XML to Design View project, crafted with your needs in mind. Seamlessly transforming XML files into an intuitive design view, it empowers users of all technical backgrounds to effortlessly visualize and manage XML data. Experience the convenience of an organized, user-friendly graphical format that enhances accessibility and usability. Our product offers essential functions such as XML to Topic Design View and XML to QoS Design View, enabling efficient data analysis and modification. With edit, save, and delete options, your control over the information is at your fingertips. Embrace a simplified, time-saving interface for a seamless XML interaction journey.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="flex-1 col-md-10 mx-auto mb-4">
+        <h2 class="text-2xl font-bold">About Developers</h2>
+        <hr class="my-2">
+      </div>
+    <div class="row">
+          
+      <!-- About Developer Card 1 -->
+      <div class="flex-1 p-8 col-md-5">
+        <div class="bg-white rounded-lg shadow p-8 card">
+          <img src="image/akhil.jpg" alt="Developer-1" class="w-full rounded-lg mb-4 developer-image">
+          <h2 class="text-xl font-bold mb-2">Akhil Sen Singh</h2>
+          <p class="text-gray-600">Frontend Developer</p>
+          <br>
+          <p><i>"Programming is akin to an engaging game of on-off switches, where my creativity takes center stage."</i></p>
+          <br>
+          <p class="text-gray-800">This guy holds a Mechanical Engineering degree, complemented by a Postgraduate Diploma in Advanced Computing. Driven by a profound passion for technology, he made a decisive career transition into the IT domain. Previously, he served as a Senior Executive at Reliance, showcasing commendable expertise in IT, management, and a strong foundation in mechanical knowledge.</p>
+        </div>
+      </div>
+
+      <!-- About Developer Card 2 -->
+      <div class="flex-1 p-8 col-md-5">
+        <div class="bg-white rounded-lg shadow p-8 card">
+          <img src="image/shubham.jpg" alt="Developer 2" class="w-full rounded-lg mb-4 developer-image">
+          <h2 class="text-xl font-bold mb-2">Shubham Jain</h2>
+          <p class="text-gray-600">Backend Developer</p>
+          <br>
+          <p><i>"In the realm of both human life and program life, imperfections manifest as bugs. The sole recourse lies in confronting them with a sense of fortuitous resolve."</i></p>
+          <br>
+          <p class="text-gray-800">
+            This guy holds an IT graduate with a Postgraduate Diploma in Advanced Computing, along with one year of experience in IT companies. Demonstrating exceptional skills as a debugger and proficient in logic creation, he has conceptualized numerous exemplary IT projects.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
