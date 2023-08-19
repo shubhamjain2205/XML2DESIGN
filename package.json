@@ -18,7 +18,7 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "generate-password": "^1.7.0",
-    "mongoose": "^7.4.1",
+    "mongoose": "^7.4.3",
     "nodemailer": "^6.9.4",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",

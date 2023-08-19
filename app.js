@@ -18,7 +18,7 @@ const generatePassword = require('generate-password');
 // Serve static files (CSS, images, etc.) from the "public" directory
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/27017");
+mongoose.connect("mongodb://127.0.0.1/27017");
 
 // Set EJS as the template engine
 // app.set("view engine", "ejs");
