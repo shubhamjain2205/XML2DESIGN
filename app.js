@@ -18,6 +18,8 @@ const generatePassword = require('generate-password');
 const multer = require('multer');
 const xml2js = require('xml2js');
 const fs = require('fs');
+// const User = require('./model/User'); // Import your User model
+
 
 
 // Serve static files (CSS, images, etc.) from the "public" directory
@@ -270,19 +272,30 @@ function isLoggedIn(req, res, next) {
 	res.redirect("/login");
 }
 
-// Handle XML Upload and Display
+// Handle XML Upload
 app.post("/upload", upload.single('xmlFile'), async (req, res) => {
   try {
     const xmlData = req.file.buffer.toString();
 
-    xml2js.parseString(xmlData, (err, result) => {
+    xml2js.parseString(xmlData, async (err, result) => {
       if (err) {
         console.error(err);
         res.status(500).send('Error parsing XML');
       } else {
-        // Wrap the XML content in <xmp> tags to preserve formatting
-        const formattedXml = `<xmp>${xmlData}</xmp>`;
-        res.send(formattedXml);
+        try {
+          const XmlData = require('./model/uploadedXML'); // Import your XmlData model
+          
+          // Store the entire parsed JSON result as a document
+          const savedData = await XmlData.create({ data: result });
+
+          const XMLsuccessMessage = "XML data saved to MongoDB";
+          return res.send(`<script>alert("${XMLsuccessMessage}"); window.location.href = "/secret";</script>`);
+
+          //res.send('XML data saved to MongoDB');
+        } catch (error) {
+          console.error('Error saving XML data to MongoDB:', error);
+          res.status(500).send('Error saving XML data to MongoDB');
+        }
       }
     });
   } catch (error) {
@@ -292,10 +305,13 @@ app.post("/upload", upload.single('xmlFile'), async (req, res) => {
 });
 
 
+
+
 //"Showing secret page" route to include a link for uploading XML files
 app.get("/secret", isLoggedIn, function (req, res) {
   res.sendFile(__dirname + "/views/secret.html");
 });
+
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

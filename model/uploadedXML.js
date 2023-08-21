@@ -2,9 +2,10 @@
 
 const mongoose = require('mongoose');
 
-const uploadedXMLSchema = new mongoose.Schema({
-  filename: String, // Store the original filename
-  xmlData: String, // Store the XML data as a string
+const xmlDataSchema = new mongoose.Schema({
+  data: mongoose.Schema.Types.Mixed, // Store varying JSON data
 });
 
-module.exports = mongoose.model('UploadedXML', uploadedXMLSchema);
+const XmlData = mongoose.model('XmlData', xmlDataSchema);
+
+module.exports = XmlData;
