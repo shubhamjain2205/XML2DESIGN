@@ -18,17 +18,11 @@ const generatePassword = require('generate-password');
 const multer = require('multer');
 const xml2js = require('xml2js');
 const fs = require('fs');
-// const User = require('./model/User'); // Import your User model
-
-
 
 // Serve static files (CSS, images, etc.) from the "public" directory
 app.use(express.static("public"));
 
 mongoose.connect("mongodb://127.0.0.1/27017");
-
-// Set EJS as the template engine
-// app.set("view engine", "ejs");
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
