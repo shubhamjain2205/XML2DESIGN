@@ -304,14 +304,41 @@ app.post("/upload", upload.single('xmlFile'), async (req, res) => {
   }
 });
 
-
-
-
 //"Showing secret page" route to include a link for uploading XML files
 app.get("/secret", isLoggedIn, function (req, res) {
   res.sendFile(__dirname + "/views/secret.html");
 });
 
+// Add a new route to fetch the list of XML document IDs
+app.get("/getXmlIds", async (req, res) => {
+  try {
+    const XmlData = require('./model/uploadedXML'); // Import your XmlData model
+    const xmlIds = await XmlData.find().distinct("_id");
+    res.json(xmlIds);
+  } catch (error) {
+    console.error("Error fetching XML IDs:", error);
+    res.status(500).send("Error fetching XML IDs");
+  }
+});
+
+// Add a new route to fetch XML data by ID
+app.get("/getXmlData", async (req, res) => {
+  try {
+    const XmlData = require('./model/uploadedXML'); // Import your XmlData model
+    const xmlId = req.query.id; // Get the ID from the query parameter
+    const xmlDocument = await XmlData.findById(xmlId);
+
+    // Convert the JSON data back to XML format
+    const xmlData = new xml2js.Builder().buildObject(xmlDocument.data);
+
+    // Send the XML data as response
+    res.set('Content-Type', 'text/xml');
+    res.send(xmlData);
+  } catch (error) {
+    console.error("Error fetching XML data:", error);
+    res.status(500).send("Error fetching XML data");
+  }
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
