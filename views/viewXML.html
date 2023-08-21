@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Uploaded XMLs</title>
+</head>
+<body>
+  <h1>Uploaded XML Files</h1>
+  <ul id="xmlList">
+    <!-- XML files will be dynamically added here using JavaScript -->
+  </ul>
+
+  <script>
+    // Fetch uploaded XMLs from the server and dynamically populate the list
+    fetch("/view-xml")
+
+      .then(response => response.json())
+      .then(uploadedXMLs => {
+        const xmlList = document.getElementById("xmlList");
+        uploadedXMLs.forEach(xml => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+            ${xml.filename}
+            <a href="/open-xml/${xml._id}">Open</a>
+          `;
+          xmlList.appendChild(listItem);
+        });
+      })
+      .catch(error => {
+        console.error("Error fetching uploaded XMLs:", error);
+      });
+  </script>
+</body>
+</html>

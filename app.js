@@ -15,6 +15,11 @@ const nodemailer = require("nodemailer");
 //const cryptoRandomString = require('crypto-random-string'); // Import the crypto-random-string library
 const generatePassword = require('generate-password');
 
+const multer = require('multer');
+const xml2js = require('xml2js');
+const fs = require('fs');
+
+
 // Serve static files (CSS, images, etc.) from the "public" directory
 app.use(express.static("public"));
 
@@ -27,6 +32,11 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+
 app.use(require("express-session")({
 	secret: "Rusty is a dog",
 	resave: false,
@@ -259,6 +269,33 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) return next();
 	res.redirect("/login");
 }
+
+// Handle XML Upload and Display
+app.post("/upload", upload.single('xmlFile'), async (req, res) => {
+  try {
+    const xmlData = req.file.buffer.toString();
+
+    xml2js.parseString(xmlData, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error parsing XML');
+      } else {
+        // Wrap the XML content in <xmp> tags to preserve formatting
+        const formattedXml = `<xmp>${xmlData}</xmp>`;
+        res.send(formattedXml);
+      }
+    });
+  } catch (error) {
+    console.error("Error during XML upload:", error);
+    res.status(500).send('Error during XML upload');
+  }
+});
+
+
+//"Showing secret page" route to include a link for uploading XML files
+app.get("/secret", isLoggedIn, function (req, res) {
+  res.sendFile(__dirname + "/views/secret.html");
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
