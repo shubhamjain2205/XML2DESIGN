@@ -271,30 +271,28 @@ app.post("/upload", upload.single('xmlFile'), async (req, res) => {
   try {
     const xmlData = req.file.buffer.toString();
 
-    xml2js.parseString(xmlData, async (err, result) => {
+    xml2js.parseString(xmlData, { explicitArray: false, strict: true }, async (err, result) => {
       if (err) {
-        console.error(err);
-        res.status(500).send('Error parsing XML');
-      } else {
-        try {
-          const XmlData = require('./model/uploadedXML'); // Import your XmlData model
-          
-          // Store the entire parsed JSON result as a document
-          const savedData = await XmlData.create({ data: result });
+        console.error('Error parsing XML:', err);
+        return res.status(500).send('Error parsing XML');
+      }
 
-          const XMLsuccessMessage = "XML data saved to MongoDB";
-          return res.send(`<script>alert("${XMLsuccessMessage}"); window.location.href = "/secret";</script>`);
+      try {
+        const XmlData = require('./model/uploadedXML'); // Import your XmlData model
 
-          //res.send('XML data saved to MongoDB');
-        } catch (error) {
-          console.error('Error saving XML data to MongoDB:', error);
-          res.status(500).send('Error saving XML data to MongoDB');
-        }
+        // Store the entire parsed JSON result as a document
+        const savedData = await XmlData.create({ data: result });
+
+        const XMLsuccessMessage = "XML data saved to MongoDB";
+        return res.send(`<script>alert("${XMLsuccessMessage}"); window.location.href = "/secret";</script>`);
+      } catch (error) {
+        console.error('Error saving XML data to MongoDB:', error);
+        return res.status(500).send('Error saving XML data to MongoDB');
       }
     });
   } catch (error) {
     console.error("Error during XML upload:", error);
-    res.status(500).send('Error during XML upload');
+    return res.status(500).send('Error during XML upload');
   }
 });
 
