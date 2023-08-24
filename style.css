@@ -303,3 +303,45 @@
   z-index: 1; /* Ensure the Forget Password div appears above the main content */
   }
   
+/* Add styles for the toggle button */
+.toggle-button {
+  margin-left: 0.5rem;
+}
+
+/* Add styles for the XML node elements */
+.xml-node {
+  margin-left: 1rem;
+}
+
+/* Add styles for the text nodes */
+.text-node {
+  color: #777;
+}
+
+/* Add styles for hidden children */
+.node-children.hidden {
+  display: none;
+}
+
+
+  .tree-view {
+  list-style: none;
+}
+
+.tree-view .folder::before {
+  content: '\f07b'; /* FontAwesome folder icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+.tree-view .file::before {
+  content: '\f15b'; /* FontAwesome file icon */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 8px;
+}
+
+.tree-view ul {
+  margin-left: 20px;
+}

@@ -332,6 +332,60 @@ app.get("/getXmlData", async (req, res) => {
   }
 });
 
+// Add a new route to fetch XML tree by ID
+app.get("/getXmlTree", async (req, res) => {
+  try {
+    const XmlData = require('./model/uploadedXML'); // Import your XmlData model
+    const xmlId = req.query.id; // Get the ID from the query parameter
+    const xmlDocument = await XmlData.findById(xmlId);
+
+    const xmlData = xmlDocument.data; // Assume your data is in JSON format
+
+    // Generate XML tree HTML using the generateXmlTree function
+    const xmlTreeHTML = generateXmlTree(xmlData);
+
+    // Send the XML tree as response
+    res.set('Content-Type', 'text/html');
+    res.send(xmlTreeHTML);
+  } catch (error) {
+    console.error("Error generating XML tree:", error);
+    res.status(500).send("Error generating XML tree");
+  }
+});
+
+// Function to generate an XML tree
+function generateXmlTree(xmlData) {
+  let xmlTreeHTML = '<ul class="tree">';
+  
+  function buildTree(node) {
+    if (Array.isArray(node)) {
+      xmlTreeHTML += '<ul>';
+      node.forEach(item => {
+        buildTree(item);
+      });
+      xmlTreeHTML += '</ul>';
+    } else if (typeof node === 'object') {
+      xmlTreeHTML += '<ul>';
+      for (const key in node) {
+        xmlTreeHTML += `<li>${key}`;
+        if (Object.keys(node[key]).length > 0) {
+          xmlTreeHTML += '<span class="toggle">Toggle</span>';
+        }
+        buildTree(node[key]);
+        xmlTreeHTML += `</li>`;
+      }
+      xmlTreeHTML += '</ul>';
+    } else {
+      xmlTreeHTML += `<li>${node}</li>`;
+    }
+  }
+
+  buildTree(xmlData);
+  xmlTreeHTML += '</ul>';
+
+  return xmlTreeHTML;
+}
+
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
 	console.log("Server Has Started!");
