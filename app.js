@@ -200,31 +200,21 @@ app.post("/register", async (req, res) => {
         password
       });
   
-      // Set a success flash message for successful registration
-    //   req.flash("success", "Registration successful! You can now log in.");
 	  const successMessage = "Registration successful! You can now log in.";
 
-  
       // Redirect the user to the home page ("/") after successful registration
-    //   return res.redirect("/");
 	return res.send(`<script>alert("${successMessage}"); window.location.href = "/";</script>`);
 
     } catch (error) {
       // Handle any errors that occurred during user creation
       console.error("Error while creating user:", error);
 
-    //   req.flash("error", "An error occurred during registration. Please try again.");
-    //   // Redirect back to the registration page with an error message
-    //   return res.redirect("/register");
-    // }
 	const errorMessage = "An error occurred during registration. Please try again.";
 
     // Display an alert with the error message and redirect back to the registration page
     return res.send(`<script>alert("${errorMessage}"); window.location.href = "/register";</script>`);
   }
 });
-  
-
 
 //Showing login form
 app.get("/login", function (req, res) {
