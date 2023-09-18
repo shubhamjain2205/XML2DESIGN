@@ -1,0 +1,30 @@
+Step 1: Start the project using the following command in your project folder
+
+npm init
+
+
+Step 2: Install the required modules using following command
+
+npm install express
+npm install ejs
+npm install mongoose
+npm install body-parser
+npm install express-session
+npm install passport passport-local 
+npm install passport-local-mongoose
+npm install connect-flash
+npm install nodemailer
+npm install @sendgrid/mail
+npm install crypto-random-string
+npm install generate-password
+npm install multer xml2js
+
+
+
+
+To start:
+
+1. Start mongo by mongod
+2. start project by node app.js
+
+ybonjsyaiwtkniqr
